@@ -2,5 +2,8 @@
   "title": "DZNSTUDEO",
   "icons": {
     "icon": "/favicon.svg?v=2"
+  },
+  "openGraph": {
+    "image": "https://bhanu-tan.vercel.app/share-preview.png"
   }
 }
