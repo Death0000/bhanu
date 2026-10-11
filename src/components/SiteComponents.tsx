@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { projects, studio, type Project } from "../data/content"
 
@@ -16,6 +16,22 @@ function Wordmark() {
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  useEffect(() => {
+    if (!isMenuOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false)
+    }
+    window.addEventListener("keydown", closeOnEscape)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener("keydown", closeOnEscape)
+    }
+  }, [isMenuOpen])
+
   const navigation = [
     ["/work", "Collection"],
     ["/about", "About"],
@@ -24,17 +40,19 @@ export function Header() {
   ]
 
   return (
-    <header className="site-header">
+    <header className={`site-header${isMenuOpen ? " menu-open" : ""}`}>
       <Wordmark />
       <button
         className="menu-toggle"
         onClick={() => setIsMenuOpen((open) => !open)}
         aria-expanded={isMenuOpen}
+        aria-controls="primary-navigation"
         aria-label="Toggle menu"
       >
         {isMenuOpen ? "Close" : "Menu"}
       </button>
       <nav
+        id="primary-navigation"
         className={isMenuOpen ? "nav open" : "nav"}
         aria-label="Primary navigation"
       >
