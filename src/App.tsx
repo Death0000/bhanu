@@ -10,7 +10,6 @@ import HomePage from "./pages/HomePage"
 import NotFoundPage from "./pages/NotFoundPage"
 import ProjectPage from "./pages/ProjectPage"
 import ServicesPage from "./pages/ServicesPage"
-import { studio } from "./data/content"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -36,14 +35,7 @@ function MotionController() {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
 
-    const pageTitles: Record<string, string> = {
-      "/": `${studio.name} — Creative studio`,
-      "/work": `Collection — ${studio.name}`,
-      "/about": `About — ${studio.name}`,
-      "/services": `Services — ${studio.name}`,
-      "/contact": `Contact — ${studio.name}`,
-    }
-    document.title = pageTitles[location.pathname] ?? `Project — ${studio.name}`
+    document.title = "DZNSTUDEO"
 
     const context = gsap.context(() => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return

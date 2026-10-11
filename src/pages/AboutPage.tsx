@@ -17,12 +17,12 @@ export default function AboutPage() {
             One <em>eye.</em>
           </>
         }
-        intro="Bhanu Partap is a multidisciplinary designer working across branding, graphic design, video, motion, packaging, and product design. After building his practice in Chandigarh and Mohali, he moved to Sheffield for an MA in Graphic Design. His work begins with the story—then finds the format that lets people see, hear, or feel it."
+        intro="Bhanu Partap is a multidisciplinary designer working across branding, graphic design, moving image, packaging, and speculative design. After building his practice in Chandigarh and Mohali, he moved to Sheffield for an MA in Graphic Design. His work has been recognised by the Future of Money Design Awards and shortlisted by Pentawards in 2026."
       />
       <section className="about-image">
         <RevealImage
-          src="/images/mono.jpg"
-          alt="Editorial placeholder portrait"
+          src="/images/bhanu-portrait.jpeg"
+          alt="Bhanu Partap standing beside his Respira design exhibition"
         />
       </section>
       <section className="split-copy">

@@ -2,20 +2,53 @@ import { useLayoutEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { projects, services } from "../data/content"
+import { awards, projects, services } from "../data/content"
 import { Arrow, ProjectCard, ProjectMeta, RevealImage } from "./SiteComponents"
 
 export function HeroCollage() {
   const cells = [
-    ["/images/objects.jpg", "Minimal product still life"],
-    ["/images/mono.jpg", "Monochrome fashion portrait"],
-    ["/images/redline.jpg", "Red fashion editorial"],
-    ["/images/axiom.jpg", "Studio portrait"],
-    ["/images/form.jpg", "Fashion portrait on geometric steps"],
-    ["/images/portal.jpg", "Abstract red architectural detail"],
-    ["/images/motion.jpg", "Editorial figure in motion"],
-    ["/images/structure.jpg", "Brutalist architectural structure"],
-  ]
+    {
+      kind: "type",
+      tone: "clay",
+      eyebrow: "Study 03",
+      title: "Terracotta",
+    },
+    {
+      kind: "type",
+      tone: "paper",
+      eyebrow: "Edition · Precision craft",
+      title: "Drape & form",
+    },
+    {
+      kind: "type",
+      tone: "red",
+      eyebrow: "Squared",
+      title: "Where ideas take shape",
+    },
+    {
+      kind: "type",
+      tone: "stone",
+      eyebrow: "Textile",
+      title: "Jacquard & tailoring",
+    },
+    {
+      kind: "image",
+      src: "/images/bhanu-school-visit.png",
+      alt: "Bhanu meeting students at Akshar School",
+    },
+    {
+      kind: "image",
+      src: "/images/bhanu-innovation-stage.jpeg",
+      alt: "Bhanu speaking at an innovation event",
+    },
+    {
+      kind: "pair",
+      items: [
+        { eyebrow: "Portrait", title: "Avant-garde study" },
+        { eyebrow: "Object", title: "Solid gold & stone" },
+      ],
+    },
+  ] as const
 
   return (
     <section className="hero">
@@ -24,9 +57,33 @@ export function HeroCollage() {
         <span>Sheffield, UK</span>
       </div>
       <div className="collage" aria-label="An editorial visual moodboard">
-        {cells.map(([src, alt], index) => (
-          <div className={`collage-cell cell-${index + 1}`} key={src}>
-            <img src={src} alt={alt} loading={index < 4 ? "eager" : "lazy"} />
+        {cells.map((cell, index) => (
+          <div
+            className={`collage-cell cell-${index + 1}`}
+            key={cell.kind === "image" ? cell.src : `hero-cell-${index + 1}`}
+          >
+            {cell.kind === "image" && (
+              <img src={cell.src} alt={cell.alt} loading="eager" />
+            )}
+            {cell.kind === "type" && (
+              <div className={`collage-type collage-type--${cell.tone}`}>
+                <span>{cell.eyebrow}</span>
+                <strong>{cell.title}</strong>
+              </div>
+            )}
+            {cell.kind === "pair" && (
+              <div className="collage-type-pair">
+                {cell.items.map((item) => (
+                  <div
+                    className="collage-type collage-type--ink"
+                    key={item.eyebrow}
+                  >
+                    <span>{item.eyebrow}</span>
+                    <strong>{item.title}</strong>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
         <div className="hero-title">
@@ -134,13 +191,6 @@ function HorizontalWork() {
 
 function ServicesList() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const previewImages = [
-    "/images/redline.jpg",
-    "/images/concrete.jpg",
-    "/images/motion.jpg",
-    "/images/objects.jpg",
-    "/images/mono.jpg",
-  ]
 
   return (
     <section className="services-block">
@@ -150,7 +200,10 @@ function ServicesList() {
       </div>
       <div className="services-layout">
         <div className="service-preview">
-          <img src={previewImages[activeIndex]} alt="" />
+          <img
+            src={services[activeIndex].image}
+            alt={services[activeIndex].imageAlt}
+          />
           <span>{services[activeIndex].number}</span>
         </div>
         <div className="service-list">
@@ -196,22 +249,92 @@ export function HomeSections() {
             Process on the page.
           </h2>
         </div>
-        <div className="award-row">
-          <span>01</span>
-          <strong>Future of Money Design</strong>
-          <p>Winner · 2026</p>
-        </div>
-        <div className="award-row">
-          <span>02</span>
-          <strong>Pentawards</strong>
-          <p>Shortlisted · Student sustainability</p>
+        {awards.map((award) => (
+          <div className="award-row" key={award.title}>
+            <span>{award.number}</span>
+            <strong>
+              <a href={award.href} target="_blank" rel="noreferrer">
+                {award.title}
+              </a>
+            </strong>
+            <p>{award.detail}</p>
+          </div>
+        ))}
+        <div
+          className="achievement-gallery"
+          aria-label="Achievement and community moments"
+        >
+          <figure className="achievement-card">
+            <img
+              src="/images/bhanu-tie-mentorship.jpeg"
+              alt="Bhanu Partap with Mr. Murgli Bukkapatnam, chairman of TiE Global"
+              loading="lazy"
+            />
+            <figcaption>Mentorship · TiE Global</figcaption>
+          </figure>
+          <figure className="achievement-card">
+            <img
+              src="/images/bhanu-innovation-stage.jpeg"
+              alt="Bhanu speaking on the Innovation Stage"
+              loading="lazy"
+            />
+            <figcaption>Speaking · Innovation Stage</figcaption>
+          </figure>
+          <figure className="achievement-card achievement-card--poster">
+            <img
+              src="/images/bhanu-leadership-chandigarh.jpeg"
+              alt="Leadership Talent Office of Chandigarh poster featuring Bhanu Partap"
+              loading="lazy"
+            />
+            <figcaption>Leadership · Chandigarh</figcaption>
+          </figure>
+          <figure className="achievement-card achievement-card--poster">
+            <img
+              src="/images/bhanu-entrepreneurship-awards.png"
+              alt="TiE Chandigarh 2025 awards poster featuring Bhanu and Rishi Verma"
+              loading="lazy"
+            />
+            <figcaption>TiE Chandigarh · 2025</figcaption>
+          </figure>
+          <figure className="achievement-card achievement-card--poster">
+            <img
+              src="/images/bhanu-leaders-conclave.png"
+              alt="Samagam Leaders Conclave 2025 poster"
+              loading="lazy"
+            />
+            <figcaption>Leaders Conclave · 2025</figcaption>
+          </figure>
+          <figure className="achievement-card achievement-card--poster">
+            <img
+              src="/images/bhanu-leadership-network.png"
+              alt="Leadership networking poster featuring Bhanu and Sumeer Walia"
+              loading="lazy"
+            />
+            <figcaption>Leadership network</figcaption>
+          </figure>
+          <figure className="achievement-card">
+            <img
+              src="/images/bhanu-school-visit.png"
+              alt="Bhanu spending time with students at Akshar School"
+              loading="lazy"
+            />
+            <figcaption>School visit · Akshar School</figcaption>
+          </figure>
+          <figure className="achievement-card">
+            <img
+              src="/images/turban-lens-community.png"
+              alt="Turban Lens Community Cinema team"
+              loading="lazy"
+            />
+            <figcaption>Community · Turban Lens</figcaption>
+          </figure>
         </div>
       </section>
       <HorizontalWork />
       <section className="feature-project">
         <RevealImage
-          src="/images/portal.jpg"
-          alt="Editorial placeholder for The Audible Budget"
+          src={featuredProject.image}
+          alt="The Audible Budget poster and red briefcase translating public finance into sound"
         />
         <div className="feature-copy">
           <ProjectMeta project={featuredProject} />
@@ -235,9 +358,9 @@ export function HomeSections() {
         </h2>
         <div className="philosophy-copy reveal">
           <p>
-            Respira turns opening a package into a breathing ritual. The Audible
-            Budget turns public numbers into sound. The format changes; the
-            story leads.
+            Respira explores how packaging can shape a moment of calm. The
+            Audible Budget asks what public spending might sound like. The
+            format changes; the story leads.
           </p>
           <span>
             India shaped.

@@ -136,10 +136,7 @@ export function ProjectCard({
 }) {
   return (
     <Link className={`project-card ${className}`} to={`/work/${project.slug}`}>
-      <RevealImage
-        src={project.image}
-        alt={`Editorial placeholder for ${project.title}`}
-      />
+      <RevealImage src={project.image} alt={project.imageAlt} />
       <ProjectMeta project={project} index={index} />
       <h3>{project.title}</h3>
     </Link>

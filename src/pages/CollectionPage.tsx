@@ -32,7 +32,7 @@ export default function CollectionPage() {
             starts with a <em>story.</em>
           </>
         }
-        intro="Packaging you can feel, public information you can hear, and a studio identity built to hold a growing body of work."
+        intro="A Pentawards-shortlisted packaging manifesto, an award-winning exploration of public finance through sound, and an independent creative practice."
       />
       <section className="work-section">
         <div className="filters" role="group" aria-label="Filter projects">

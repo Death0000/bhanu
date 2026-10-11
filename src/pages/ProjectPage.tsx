@@ -14,75 +14,66 @@ export default function ProjectPage() {
 
   if (!project) return <NotFoundPage />
 
-  const currentIndex = projects.indexOf(project)
   const nextProject = getNextProject(project)
-  const storyTitle =
-    project.slug === "respira"
-      ? "A breathing ritual, held in the palm of your hand."
-      : project.slug === "audible-budget"
-        ? "Making public money possible to hear."
-        : "A studio identity built around stories, not software."
-  const storyCopy =
-    project.slug === "respira"
-      ? "Thumb-traced wave ridges guide a slow breath. A magnetic click and herbal scent add sensory cues, while compostable moulded paper pulp gives the case a considered material life."
-      : project.slug === "audible-budget"
-        ? "Created as an Android design course final submission, the speculative civic object won first place in the FMO competition and was exhibited publicly."
-        : "DZNSTUDEO is Bhanu Partap’s creative and design studio. This page remains intentionally concise until its services, clients, and complete story are confirmed."
 
   return (
     <PageShell>
       <section className="case-hero">
         <ProjectMeta project={project} />
         <h1>{project.title}</h1>
-        <RevealImage
-          src={project.image}
-          alt={`${project.title} hero artwork`}
-          eager
-        />
+        <p className="case-subtitle">{project.subtitle}</p>
+        <RevealImage src={project.image} alt={project.imageAlt} eager />
       </section>
       <section className="case-intro">
         <p className="eyebrow">Overview</p>
         <h2>{project.summary}</h2>
         <dl>
-          <div>
-            <dt>Project</dt>
-            <dd>{project.title}</dd>
-          </div>
-          <div>
-            <dt>Recognition</dt>
-            <dd>{project.year}</dd>
-          </div>
-          <div>
-            <dt>Discipline</dt>
-            <dd>{project.category}</dd>
-          </div>
-          <div>
-            <dt>Designer</dt>
-            <dd>Bhanu Partap</dd>
-          </div>
+          {project.facts.map((fact) => (
+            <div key={fact.label}>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))}
         </dl>
       </section>
-      <section className="case-image-pair">
-        <RevealImage
-          src={project.imageTwo}
-          alt={`Editorial placeholder for ${project.title}`}
-        />
+      <section
+        className={`case-image-pair${
+          project.imageTwo ? "" : " case-image-pair--panel-only"
+        }`}
+      >
+        {project.imageTwo && (
+          <RevealImage src={project.imageTwo} alt={project.imageTwoAlt} />
+        )}
         <div className={`case-panel ${project.tone}`}>
-          <span>
-            DZNSTUDEO — STORY {String(currentIndex + 1).padStart(2, "0")}
-          </span>
-          <strong>
-            {project.title.split(" ")[0]}
-            <br />
-            in form.
-          </strong>
+          <span>{project.panelEyebrow}</span>
+          <div className="case-panel-copy">
+            <strong>{project.panelHeading}</strong>
+            <p>{project.panelBody}</p>
+          </div>
         </div>
       </section>
-      <section className="case-story">
-        <p className="eyebrow">The story</p>
-        <h2>{storyTitle}</h2>
-        <p>{storyCopy}</p>
-      </section>
+      {project.sections.map((section) => (
+        <section className="case-story" key={section.eyebrow}>
+          <p className="eyebrow">{section.eyebrow}</p>
+          <h2>{section.title}</h2>
+          <p>{section.body}</p>
+        </section>
+      ))}
+      {project.links.length > 0 && (
+        <section className="case-links" aria-label="Project links">
+          {project.links.map((link) => (
+            <a
+              className="text-link"
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              key={link.href}
+            >
+              {link.label} <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </section>
+      )}
       <Link className="next-project" to={`/work/${nextProject.slug}`}>
         <span>Next project · {nextProject.category}</span>
         <strong>{nextProject.title} ↗</strong>
