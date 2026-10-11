@@ -1,7 +1,16 @@
-# DZNSTUDEO — Bhanu Partap
+# DZNSTUDEO
 
-A responsive portfolio for multidisciplinary designer Bhanu Partap, built with
-React, TypeScript, Vite, Tailwind CSS, and React Router.
+Portfolio website for multidisciplinary designer Bhanu Partap. The site
+features selected design projects, achievements, services, and information
+about the DZNSTUDEO creative practice.
+
+## Built with
+
+- React 19 and TypeScript
+- Vite 8
+- React Router 7
+- Tailwind CSS 4
+- GSAP and ScrollTrigger, with Lenis for smooth scrolling
 
 ## Requirements
 
@@ -10,64 +19,68 @@ React, TypeScript, Vite, Tailwind CSS, and React Router.
 
 ## Getting started
 
+Install the project dependencies and start the Vite development server:
+
 ```bash
 npm install
 npm run dev
 ```
 
-Vite starts the development server on port `8443` by default in this project.
-Open the URL printed in the terminal. If that port is already occupied, choose
-another port:
+The development server uses port `8443` by default. Open the local URL printed
+in the terminal. If the port is already in use, select another one:
 
 ```bash
 npm run dev -- --port 5173
 ```
 
-Keep the terminal open while developing. Press `Ctrl+C` to stop the server.
+Keep the terminal open while the server is running. Press `Ctrl+C` to stop it.
 
-## Pages
+## Site pages
 
-- `/` — Home
-- `/work` — Collection, with project-category filters
-- `/work/:slug` — Individual project details
-- `/about` — Designer profile
+- `/` — Homepage, selected work, achievements, and services preview
+- `/work` — Project collection with category filters
+- `/work/respira` — Respira packaging concept
+- `/work/audible-budget` — The Audible Budget speculative civic-design project
+- `/work/dznstudeo` — DZNSTUDEO creative practice
+- `/about` — Designer profile and approach
 - `/services` — Services and disciplines
-- `/contact` — Contact form and social link
+- `/contact` — Contact form
 
-The contact form currently validates input in the browser but does not deliver
-submissions. Configure a form service or backend before relying on it in
-production.
+The contact form currently provides client-side validation only; it does not
+send submissions to a backend or form service.
 
 ## Production
 
-Create an optimized production build:
+Build an optimized production version:
 
 ```bash
 npm run build
 ```
 
-Preview the build locally:
+Preview the production build locally:
 
 ```bash
 npm run preview
 ```
 
-The production files are written to `dist/`. Configure the hosting provider to
-serve `index.html` for application routes so direct visits to routes such as
-`/about` and `/work/respira` work with client-side routing.
+Build output is written to `dist/`. Configure the hosting provider to serve
+`index.html` for application routes so direct visits to paths such as `/about`
+and `/work/respira` work with client-side routing.
 
 ## Project structure
 
 ```text
 src/
-  components/  Shared site components and home-page sections
-  data/        Project, studio, and service content
+  components/  Shared site components and homepage sections
+  data/        Studio, project, award, and service content
   pages/       Route-level page components
-  App.tsx      Application routes and motion lifecycle
-  index.css    Global styles
+  App.tsx      Routes, page title, and motion lifecycle
+  index.css    Global styles and responsive layout
   main.tsx     React entry point
 public/
-  images/      Portfolio imagery
+  images/      Portfolio, achievement, and service imagery
+  favicon.png  DZNSTUDEO browser-tab icon
+  favicon.svg  Scalable DZNSTUDEO browser-tab icon
 ```
 
 ## Useful commands
@@ -76,5 +89,5 @@ public/
 npm run dev       # Start the development server
 npm run build     # Build for production
 npm run preview   # Preview the production build
-npm run format    # Format the project with oxfmt
+npm run format    # Format files with oxfmt
 ```
