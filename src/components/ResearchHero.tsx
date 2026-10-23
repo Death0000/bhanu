@@ -105,7 +105,9 @@ export default function ResearchHero() {
       </div>
       <div className="research-corner research-corner--top-left">
         <span aria-hidden="true" className="research-spark">
-          ✳
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 1.5 14.5 9.5 22.5 12 14.5 14.5 12 22.5 9.5 14.5 1.5 12 9.5 9.5 12 1.5Z" />
+          </svg>
         </span>
         <span>Selected stories</span>
       </div>
@@ -137,7 +139,10 @@ export default function ResearchHero() {
       <div className="research-card-wrap">
         <div className="research-card" ref={cardRef}>
           <Link className="research-card-logo" to="/" aria-label={`${studio.name} home`}>
-            <span aria-hidden="true">◼</span> {studio.name}
+            <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+              <path d="M1 1h6v6H1zM9 1h6v6H9zM1 9h6v6H1zM9 9h6v6H9z" />
+            </svg>
+            {studio.name}
           </Link>
           <p className="research-card-lead">{practice.panelHeading}</p>
           <p className="research-card-copy">{practice.panelBody}</p>

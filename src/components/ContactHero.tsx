@@ -249,7 +249,10 @@ export default function ContactHero() {
           {studio.name}
         </Link>
         <Link className="contact-slider-projects" to="/work">
-          <span aria-hidden="true">▦</span> Research &amp; work
+          <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+            <path d="M1 1h6v6H1zM9 1h6v6H9zM1 9h6v6H1zM9 9h6v6H9z" />
+          </svg>
+          Research &amp; work
         </Link>
         <Link to="/contact" className="contact-slider-menu">
           Contact
@@ -306,7 +309,17 @@ export default function ContactHero() {
       </div>
 
       <div className="contact-slider-bottom">
-        <a href="#contact-form">Scroll ↓</a>
+        <a href="#contact-form">
+          Scroll
+          <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+            <path
+              d="M8 2v11M3.5 9.5 8 14l4.5-4.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
+            />
+          </svg>
+        </a>
         <span>{studio.location}</span>
         <a href={studio.linkedin} target="_blank" rel="noreferrer">
           LinkedIn <Arrow />

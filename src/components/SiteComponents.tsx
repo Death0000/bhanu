@@ -3,7 +3,23 @@ import { Link, NavLink } from "react-router-dom"
 import { projects, studio, type Project } from "../data/content"
 
 export function Arrow() {
-  return <span aria-hidden="true">↗</span>
+  return (
+    <svg
+      aria-hidden="true"
+      width="12"
+      height="12"
+      viewBox="0 0 16 16"
+      fill="none"
+      focusable="false"
+    >
+      <path
+        d="M4 12 12 4M5 4h7v7"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="square"
+      />
+    </svg>
+  )
 }
 
 function Wordmark() {

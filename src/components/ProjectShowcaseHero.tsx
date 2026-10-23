@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom"
 import gsap from "gsap"
 import { projects, studio } from "../data/content"
+import { Arrow } from "./SiteComponents"
 
 const slideDuration = 6000
 
@@ -199,7 +200,7 @@ export default function ProjectShowcaseHero() {
           className="project-showcase-open"
           to={`/work/${activeProject.slug}`}
         >
-          <span aria-hidden="true">↗</span> Explore project
+          Explore project <Arrow />
         </Link>
       </div>
 
@@ -253,7 +254,14 @@ export default function ProjectShowcaseHero() {
           aria-label="Scroll to explore more"
           onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
         >
-          <span aria-hidden="true">↓</span>
+          <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+            <path
+              d="M8 2v11M3.5 9.5 8 14l4.5-4.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
+            />
+          </svg>
         </button>
         <span>{String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
       </div>

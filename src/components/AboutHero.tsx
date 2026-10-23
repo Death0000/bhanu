@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import gsap from "gsap"
 import { studio } from "../data/content"
+import { Arrow } from "./SiteComponents"
 
 export default function AboutHero() {
   const heroRef = useRef<HTMLElement>(null)
@@ -142,7 +143,7 @@ export default function AboutHero() {
         to="/work/respira"
         aria-label="Explore the Respira project"
       >
-        <span aria-hidden="true">↗</span>
+        <Arrow />
       </Link>
     </section>
   )

@@ -104,7 +104,15 @@ export function HeroCollage() {
         </div>
       </div>
       <div className="scroll-cue">
-        Scroll to explore <span>↓</span>
+        Scroll to explore
+        <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+          <path
+            d="M8 2v11M3.5 9.5 8 14l4.5-4.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.4"
+          />
+        </svg>
       </div>
     </section>
   )
@@ -227,7 +235,17 @@ function HorizontalWork() {
     <section className="horizontal-work" id="selected-work" ref={sectionRef}>
       <div className="section-top">
         <p className="eyebrow">Selected stories</p>
-        <p>Scroll to browse →</p>
+        <p>
+          Scroll to browse
+          <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+            <path
+              d="M2 8h11M9 3.5 13.5 8 9 12.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
+            />
+          </svg>
+        </p>
       </div>
       <div className="project-track" ref={trackRef}>
         {projects.map((project, index) => (
