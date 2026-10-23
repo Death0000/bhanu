@@ -1,11 +1,11 @@
 import { useState } from "react"
 import {
   ContactCTA,
-  PageHero,
   PageShell,
   ProjectCard,
 } from "../components/SiteComponents"
 import { projects } from "../data/content"
+import ResearchHero from "../components/ResearchHero"
 
 const filters = [
   "All",
@@ -23,17 +23,7 @@ export default function CollectionPage() {
 
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Selected projects"
-        title={
-          <>
-            Every project
-            <br />
-            starts with a <em>story.</em>
-          </>
-        }
-        intro="A Pentawards-shortlisted packaging manifesto, an award-winning exploration of public finance through sound, and an independent creative practice."
-      />
+      <ResearchHero />
       <section className="work-section">
         <div className="filters" role="group" aria-label="Filter projects">
           {filters.map((filter) => (

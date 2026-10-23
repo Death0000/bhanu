@@ -2,9 +2,9 @@ import { useState, type FormEvent } from "react"
 import {
   Arrow,
   ContactCTA,
-  PageHero,
   PageShell,
 } from "../components/SiteComponents"
+import ContactHero from "../components/ContactHero"
 import { services, studio } from "../data/content"
 
 export default function ContactPage() {
@@ -27,16 +27,7 @@ export default function ContactPage() {
 
   return (
     <PageShell>
-      <PageHero
-        eyebrow="Open to work · On-site · Hybrid · Remote"
-        title={
-          <>
-            Let’s make
-            <br />a good <em>story.</em>
-          </>
-        }
-        intro="Bhanu is based in Sheffield and open to opportunities across the UK, including Derby, as well as remote collaborations."
-      />
+      <ContactHero />
       <section className="contact-layout">
         <aside>
           <p className="eyebrow">Connect</p>
@@ -45,7 +36,7 @@ export default function ContactPage() {
           </a>
           <span>{studio.location}</span>
         </aside>
-        <form onSubmit={handleSubmit} noValidate>
+        <form id="contact-form" onSubmit={handleSubmit} noValidate>
           <label>
             Name *
             <input name="name" required autoComplete="name" />

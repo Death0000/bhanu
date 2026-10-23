@@ -74,28 +74,35 @@ function MotionController() {
         })
 
       if (location.pathname === "/") {
+        const homeHero = document.querySelector<HTMLElement>(".hero")
         const collageCells =
           document.querySelectorAll<HTMLElement>(".collage-cell")
         const heroContent =
           document.querySelectorAll<HTMLElement>(".hero-title > *")
+        const heroReveal = {
+          trigger: homeHero,
+          start: "top 78%",
+          once: true,
+        }
 
-        if (collageCells.length) {
+        if (homeHero && collageCells.length) {
           gsap.from(collageCells, {
             clipPath: "inset(100% 0 0 0)",
             duration: 1,
             stagger: 0.07,
             ease: "power3.inOut",
-            delay: 0.15,
+            scrollTrigger: heroReveal,
           })
         }
 
-        if (heroContent.length) {
+        if (homeHero && heroContent.length) {
           gsap.from(heroContent, {
             y: 28,
             opacity: 0,
             stagger: 0.1,
             duration: 0.8,
-            delay: 0.55,
+            delay: 0.2,
+            scrollTrigger: heroReveal,
           })
         }
       }

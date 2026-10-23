@@ -33,8 +33,8 @@ export function Header() {
   }, [isMenuOpen])
 
   const navigation = [
-    ["/work", "Collection"],
-    ["/about", "About"],
+    ["/work", "Research & work"],
+    ["/about", "About me"],
     ["/services", "Services"],
     ["/contact", "Contact"],
   ]

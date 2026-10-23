@@ -4,32 +4,33 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { awards, projects, services } from "../data/content"
 import { Arrow, ProjectCard, ProjectMeta, RevealImage } from "./SiteComponents"
+import SculptureHero from "./ui/liquid-sculpture-hero"
 
 export function HeroCollage() {
   const cells = [
     {
       kind: "type",
       tone: "clay",
-      eyebrow: "Study 03",
-      title: "Terracotta",
+      eyebrow: "Respira",
+      title: "Beyond Package",
     },
     {
       kind: "type",
       tone: "paper",
-      eyebrow: "Edition · Precision craft",
-      title: "Drape & form",
+      eyebrow: "The Audible Budget",
+      title: "Making public money audible",
     },
     {
       kind: "type",
       tone: "red",
-      eyebrow: "Squared",
-      title: "Where ideas take shape",
+      eyebrow: "DZNSTUDEO",
+      title: "Every design has a story",
     },
     {
       kind: "type",
       tone: "stone",
-      eyebrow: "Textile",
-      title: "Jacquard & tailoring",
+      eyebrow: "Practice",
+      title: "Branding & graphic design",
     },
     {
       kind: "image",
@@ -44,8 +45,8 @@ export function HeroCollage() {
     {
       kind: "pair",
       items: [
-        { eyebrow: "Portrait", title: "Avant-garde study" },
-        { eyebrow: "Object", title: "Solid gold & stone" },
+        { eyebrow: "Moving image", title: "Video & motion" },
+        { eyebrow: "Speculative design", title: "Civic experience" },
       ],
     },
   ] as const
@@ -89,10 +90,10 @@ export function HeroCollage() {
         <div className="hero-title">
           <p>Branding · Graphic · Motion · Packaging</p>
           <h1>
-            <span>Every design</span>
-            <span>has a story.</span>
+            <span>One practice.</span>
+            <span>Many forms.</span>
           </h1>
-          <div className="hero-mark">BP® 26</div>
+          <div className="hero-mark">Bhanu Partap · 2026</div>
         </div>
         <div className="collage-red">
           Bhanu
@@ -112,7 +113,7 @@ export function HeroCollage() {
 export function EditorialIntro() {
   return (
     <section className="editorial-intro">
-      <p className="eyebrow reveal">Bhanu Partap · Designer</p>
+      <p className="eyebrow reveal">A little about me</p>
       <h2 className="display reveal">
         From pixels
         <br />
@@ -120,12 +121,69 @@ export function EditorialIntro() {
       </h2>
       <div className="intro-copy reveal">
         <p>
-          Bhanu moves between branding, graphic design, video, motion, and
-          product thinking—making work that can be seen, heard, and felt.
+          I’m Bhanu, a multidisciplinary designer shaped by a move from
+          Chandigarh to Sheffield. My path through animation, video and graphic
+          design taught me to look for the story before choosing the medium.
         </p>
         <Link className="text-link" to="/about">
-          Meet Bhanu <Arrow />
+          More about me <Arrow />
         </Link>
+      </div>
+    </section>
+  )
+}
+
+function StoryAndPrinciples() {
+  const principles = [
+    {
+      number: "01",
+      title: "Start with a better question.",
+      detail:
+        "Research the context and listen closely before deciding what the work should look like.",
+    },
+    {
+      number: "02",
+      title: "Make ideas tangible.",
+      detail:
+        "Use image, sound, material and interaction to turn an abstract thought into something people can experience.",
+    },
+    {
+      number: "03",
+      title: "Design for people, not the portfolio.",
+      detail:
+        "Make room for different perspectives, clear communication and the people who will encounter the work.",
+    },
+  ]
+
+  return (
+    <section className="story-principles">
+      <div className="story-intro reveal">
+        <p className="eyebrow">The short version</p>
+        <h2>
+          Two places.
+          <br />
+          One evolving <em>practice.</em>
+        </h2>
+        <p>
+          I began with Animation and Game Design in India, then worked across
+          video, branding and graphic design before moving to the UK for an MA
+          in Graphic Design at Sheffield Hallam University. Today, I bring
+          those disciplines together to explore how design can make complex
+          ideas feel human.
+        </p>
+        <Link className="text-link" to="/about">
+          Read my story <Arrow />
+        </Link>
+      </div>
+      <div className="principles-list">
+        <p className="eyebrow reveal">A few principles I return to</p>
+        {principles.map((principle) => (
+          <article className="principle-row reveal" key={principle.number}>
+            <span>{principle.number}</span>
+            <h3>{principle.title}</h3>
+            <p>{principle.detail}</p>
+          </article>
+        ))}
       </div>
     </section>
   )
@@ -166,7 +224,7 @@ function HorizontalWork() {
   }, [])
 
   return (
-    <section className="horizontal-work" ref={sectionRef}>
+    <section className="horizontal-work" id="selected-work" ref={sectionRef}>
       <div className="section-top">
         <p className="eyebrow">Selected stories</p>
         <p>Scroll to browse →</p>
@@ -196,7 +254,7 @@ function ServicesList() {
     <section className="services-block">
       <div className="services-heading">
         <p className="eyebrow reveal">Capabilities</p>
-        <h2 className="section-title reveal">What we do.</h2>
+        <h2 className="section-title reveal">What I do.</h2>
       </div>
       <div className="services-layout">
         <div className="service-preview">
@@ -238,8 +296,34 @@ export function HomeSections() {
 
   return (
     <>
+      <SculptureHero
+        brand="BP"
+        src="/images/bhanu-reading-studio.jpeg"
+        mobileSrc="/images/bhanu-portrait.jpeg"
+        imageAlt="Bhanu Partap exploring a design book in a studio library"
+        eyebrow="Bhanu Partap · Multidisciplinary designer · Sheffield, UK"
+        headline={"Every design\nhas a story."}
+        headlineAccent="has a story."
+        body="I work across branding, graphic design, moving image, packaging, and speculative design—choosing the form that best serves each story."
+        primaryCta={{ label: "Explore selected work", href: "#selected-work" }}
+        secondaryCta={{ label: "About me", href: "/about" }}
+        showNav={false}
+        themeToggle={false}
+        showCredit={false}
+        loadFonts={false}
+        preserveImage
+        className="sh-root--brand"
+        backdropText="DZNSTUDEO"
+        background="#111111"
+        darkBackground="#111111"
+        imageBackground="#EAE7E1"
+        textColor="#F5F5F5"
+        accentColor="#FF3028"
+        height="100svh"
+      />
       <HeroCollage />
       <EditorialIntro />
+      <StoryAndPrinciples />
       <section className="recognition">
         <div className="recognition-heading">
           <p className="eyebrow reveal">Recognition</p>
